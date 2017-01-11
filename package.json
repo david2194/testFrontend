@@ -1,0 +1,37 @@
+{
+  "name": "h17-frontend",
+  "version": "0.0.1",
+  "description": "Font end pour le projet du cours H17",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack -d --watch",
+    "build": "webpack -p",
+    "web": "npm run dev & webpack-dev-server --content-base ./public --port 8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/glo2003/h17-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/glo2003/h17-frontend/issues"
+  },
+  "homepage": "https://github.com/glo2003/h17-frontend#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel": "^6.5.2",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "http-server": "^0.9.0",
+      "webpack-dev-server": "^1.16.2",
+    "webpack": "^1.14.0"
+  }
+}

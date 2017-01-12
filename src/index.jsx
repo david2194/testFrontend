@@ -18,7 +18,7 @@ class App extends React.Component {
     };
 
     _fetchData() {
-        fetchAbout().then((about) => {
+       fetchAbout().then((about) => {
             const currentState = this.state.completeState;
             this.setState({completeState: currentState.set('about', Immutable.fromJS(about))});
         }).catch((error) => {
@@ -34,13 +34,14 @@ class App extends React.Component {
     };
 
     render() {
+        console.log("Rendering...")
         let sectionContent = <div/>;
         switch(this.state.activeTab) {
             case 0:
-                sectionContent = <PizzaMenu state={state.get('menu')}/>;
+                sectionContent = <PizzaMenu state={this.state.completeState.get('menu')}/>;
                 break;
             case 1:
-                sectionContent = <About state={state.get('about')}/>;
+                sectionContent = <About state={this.state.completeState.get('about')}/>;
                 break;
         }
         return (

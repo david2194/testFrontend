@@ -1,6 +1,7 @@
+import * as Immutable from 'immutable';
 import React from 'react';
 import {render} from 'react-dom';
-import state from './state.js'
+import {state, fetchAbout, fetchPizzaMenu} from './state.js'
 import About from './components/about.jsx'
 import PizzaMenu from './components/pizza.jsx'
 import {Layout, Header, Content, Tabs, Tab} from 'react-mdl'
@@ -13,16 +14,33 @@ class App extends React.Component {
             activeTab: 0,
             completeState: state
         };
-    }
+        this._fetchData();
+    };
+
+    _fetchData() {
+        fetchAbout().then((about) => {
+            const currentState = this.state.completeState;
+            this.setState({completeState: currentState.set('about', Immutable.fromJS(about))});
+        }).catch((error) => {
+            console.log(error);
+        });
+
+        fetchPizzaMenu().then((pizzas) => {
+            const currentState = this.state.completeState;
+            this.setState({completeState: currentState.setIn(['menu', 'pizzas'], Immutable.fromJS(pizzas.pizzas))});
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
 
     render() {
         let sectionContent = <div/>;
         switch(this.state.activeTab) {
             case 0:
-                sectionContent = <PizzaMenu state={state.getIn(['state', 'menu'])}/>;
+                sectionContent = <PizzaMenu state={state.get('menu')}/>;
                 break;
             case 1:
-                sectionContent = <About state={state.getIn(['state', 'about'])}/>;
+                sectionContent = <About state={state.get('about')}/>;
                 break;
         }
         return (
@@ -39,7 +57,7 @@ class App extends React.Component {
                 </Content>
             </Layout>
         )
-    }
+    };
 };
 
 render(<App/>, document.getElementById('app'));

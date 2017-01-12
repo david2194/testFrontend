@@ -55,10 +55,18 @@ const default_state = Immutable.fromJS({
 
 export let state = default_state;
 
+const _fetchJSON = (url) => {
+    const jsonPromise = window.fetch(url, {method: 'GET'})
+          .then((response) => {
+              return response.json();
+          });
+    return jsonPromise;
+};
+
 export const fetchAbout = () => {
-    return window.fetch('/contributors', {method: 'GET'});
+    return _fetchJSON('/contributors');
 };
 
 export const fetchPizzaMenu = () => {
-    return window.fetch('/menu/pizzas', {method: 'GET'});
+    return _fetchJSON('/menu/pizzas');
 };

@@ -1,4 +1,4 @@
 node_modules/
 
-js/build.js
-js/build.js.map
+public/js/build.js
+public/js/build.js.map

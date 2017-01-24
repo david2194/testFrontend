@@ -16,7 +16,7 @@ const PizzaItem = ({name, img, description, ingredients}) => {
                         Ingrédients:
                     </p>
                     <ul>
-                        {ingredients.map((ingredient, _) => <li key={ingredient.id}>ingredient.name</li>)}
+                        {ingredients.map((ingredient, _) => <li key={ingredient.id}>{ingredient.name}</li>)}
                     </ul>
                 </CardText>
                 <CardActions border>

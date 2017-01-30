@@ -49,7 +49,27 @@ const default_state = Immutable.fromJS({
                         name: 'Fromage'
                     }
                 ]
-            }]
+            }],
+        top_ingredients : [
+            {
+                id: 1,
+                name: 'Sauce tomate'
+            },
+            {
+                id: 2,
+                name: 'Fromage'
+            }
+        ],
+        top_pizzas : [
+            {
+                id: 456,
+                name: 'Pep-fro'
+            },
+            {
+                id: 789,
+                name: 'Hawaiian'
+            }
+        ]
     }
 });
 
@@ -69,4 +89,12 @@ export const fetchAbout = () => {
 
 export const fetchPizzaMenu = () => {
     return _fetchJSON('/menu/pizzas');
+};
+
+export const fetchTopPizzas = () => {
+    return _fetchJSON('/menu/top/pizzas');
+};
+
+export const fetchTopIngredients = () => {
+    return _fetchJSON('/menu/top/ingredients');
 };

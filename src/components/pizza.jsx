@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Cell, Card, CardTitle, CardText, CardActions, Button} from 'react-mdl'
+import {Grid, Cell, Card, CardTitle, CardText, CardActions, Button, DataTable, TableHeader} from 'react-mdl'
 
 
 const PizzaItem = ({name, img, description, ingredients}) => {
@@ -28,14 +28,39 @@ const PizzaItem = ({name, img, description, ingredients}) => {
 };
 
 
+const TopTen = ({title, items}) => {
+    items = items.map((item, index) => ({pos: index + 1, name: item.name})).slice(0, 10);
+    return (
+        <Cell col={6}>
+                <h3>{title}</h3>
+                <DataTable
+                    rows={items}
+                >
+                    <TableHeader numeric name="pos" tooltip="Position">Position</TableHeader>
+                    <TableHeader name="name" tooltip="Pizza">Pizza</TableHeader>
+                </DataTable>
+            </Cell>
+    )
+};
+
+
 const PizzaMenu = ({state}) => (
-    <Grid>
-    {state.get('pizzas').toSeq().map(pizza =>
-        <PizzaItem
-        key={pizza.get('id')}
-        {...pizza.toJS()}
-        />)}
-    </Grid>
+    <main>
+        <Grid>
+            <TopTen {...{title: 'Trending Pizzas', items: state.get('top_pizzas').toJS()}}/>
+            <TopTen {...{title: 'Trending Ingredients', items: state.get('top_ingredients').toJS()}}/>
+        </Grid>
+        <Grid>
+        <Cell col={12}>
+            <h2>Menu</h2>
+        </Cell>
+        {state.get('pizzas').toSeq().map(pizza =>
+            <PizzaItem
+            key={pizza.get('id')}
+            {...pizza.toJS()}
+            />)}
+        </Grid>
+    </main>
 );
 
 export default PizzaMenu;

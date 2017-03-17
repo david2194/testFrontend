@@ -3,7 +3,7 @@ import {Grid, Cell, Card, CardTitle, CardText, CardActions, Button, DataTable, T
 
 
 const PizzaItem = ({name, img, description, ingredients}) => {
-    const style = {backgroundImage: 'url(' + img + ')'}
+    const style = {backgroundImage: 'url( data:image/jpg;base64,' + img.data + ')'};
     return (
         <Cell col={4}>
             <Card className='card pizza-card'>

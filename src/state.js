@@ -98,3 +98,8 @@ export const fetchTopPizzas = () => {
 export const fetchTopIngredients = () => {
     return _fetchJSON('/menu/top/ingredients');
 };
+
+export const fetchLikePizza = (pizzaName, like) => {
+    const url = '/menu/pizzas/like?name=' + pizzaName + '&like=' + like;
+    return fetch(url, {method: 'PUT'}).then(response => response.json());
+};

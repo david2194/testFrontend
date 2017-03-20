@@ -2,8 +2,9 @@ import React from 'react'
 import {Grid, Cell, Card, CardTitle, CardText, CardActions, Button, DataTable, TableHeader} from 'react-mdl'
 import {fetchLikePizza} from '../state.js'
 
+
 const PizzaItem = ({name, img, description, ingredients, cote}) => {
-    const style = {backgroundImage: 'url(' + img + ')'};
+    const style = {backgroundImage: 'url( data:image/jpg;base64,' + img.data + ')'};
     return (
         <Cell col={4}>
             <Card className='card pizza-card'>

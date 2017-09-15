@@ -1,9 +1,10 @@
 import React from 'react'
 import {Grid, Cell, Card, CardTitle, CardText, CardActions, Button, DataTable, TableHeader} from 'react-mdl'
+import {fetchLikePizza} from '../state.js'
 
 
-const PizzaItem = ({name, img, description, ingredients}) => {
-    const style = {backgroundImage: 'url(data:image/png;base64, ' + img.data + ')'};
+const PizzaItem = ({name, img, description, ingredients, cote}) => {
+    const style = {backgroundImage: 'url( data:image/jpg;base64,' + img.data + ')'};
     return (
         <Cell col={4}>
             <Card className='card pizza-card'>
@@ -12,6 +13,15 @@ const PizzaItem = ({name, img, description, ingredients}) => {
                     <p>
                         {description}
                     </p>
+					<p>
+                        {cote}% des Gillois aiment.
+                        <CardActions border>
+                            <Button colored onClick={() => fetchLikePizza(name, "1")}>J'aime</Button>
+                        </CardActions>
+                        <CardActions border>
+                            <Button colored onClick={() => fetchLikePizza(name, "0")}>Je n'aime pas</Button>
+                        </CardActions>
+                    </p>
                     <p>
                         Ingrédients:
                     </p>
@@ -19,9 +29,6 @@ const PizzaItem = ({name, img, description, ingredients}) => {
                         {ingredients.map((ingredient, _) => <li key={ingredient.id}>{ingredient.name}</li>)}
                     </ul>
                 </CardText>
-                <CardActions border>
-                    <Button colored >ORDER NOW</Button>
-                </CardActions>
             </Card>
         </Cell>
     )

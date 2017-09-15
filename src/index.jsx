@@ -1,7 +1,7 @@
 import * as Immutable from 'immutable';
 import React from 'react';
 import {render} from 'react-dom';
-import {state, fetchAbout, fetchPizzaMenu, fetchTopIngredients, fetchTopPizzas} from './state.js'
+import {state, fetchAbout, fetchPizzaMenu, fetchTopIngredients, fetchTopPizzas, fetchLikePizza} from './state.js'
 import About from './components/about.jsx'
 import PizzaMenu from './components/pizza.jsx'
 import {Layout, Header, Content, Tabs, Tab} from 'react-mdl'
